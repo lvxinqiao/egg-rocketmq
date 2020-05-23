@@ -1,8 +1,8 @@
 'use strict';
 const RocketMQ = require('./lib/rocketmq');
 module.exports = app => {
-  if (app.config.rocketmq) {
-    app.rocketmq = new RocketMQ(app.config.rocketmq, app);
+  if (app.config.rocketmq && !app.rocketmq) {
+    app.rocketmq = new RocketMQ(app, app.config.rocketmq);
   }
 
   app.beforeStart(async () => {
